@@ -19,6 +19,7 @@ import unlink from '../../images/unlink.svg';
 import emoji from '../../images/emoji.svg';
 import embedded from '../../images/embedded.svg';
 import image from '../../images/image.svg';
+import video from '../../images/video.svg';
 import undo from '../../images/undo.svg';
 import redo from '../../images/redo.svg';
 import subscript from '../../images/subscript.svg';
@@ -29,7 +30,7 @@ import superscript from '../../images/superscript.svg';
 * whatever user passes in toolbar property is deeply merged with this to over-ride defaults.
 */
 export default {
-  options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'embedded', 'emoji', 'image', 'remove', 'history'],
+  options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'embedded', 'emoji', 'image', 'video', 'remove', 'history'],
   inline: {
     inDropdown: false,
     className: undefined,
@@ -156,6 +157,24 @@ export default {
     alignmentEnabled: true,
     uploadCallback: undefined,
     inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
+    alt: { present: false, mandatory: false },
+    defaultSize: {
+      height: 'auto',
+      width: 'auto',
+    },
+    title: undefined,
+  },
+  video: {
+    icon: video,
+    className: undefined,
+    component: undefined,
+    popupClassName: undefined,
+    urlEnabled: true,
+    uploadEnabled: true,
+    previewVideo: false,
+    alignmentEnabled: true,
+    uploadCallback: undefined,
+    inputAccept: 'video/webm,video/mp4,video/ogg',
     alt: { present: false, mandatory: false },
     defaultSize: {
       height: 'auto',

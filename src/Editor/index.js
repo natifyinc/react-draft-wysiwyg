@@ -96,6 +96,7 @@ export default class WysiwygEditor extends Component {
   constructor(props) {
     super(props);
     const toolbar = mergeRecursive(defaultToolbar, props.toolbar);
+
     this.state = {
       editorState: undefined,
       editorFocused: false,
@@ -111,6 +112,7 @@ export default class WysiwygEditor extends Component {
       {
         isReadOnly: this.isReadOnly,
         isImageAlignmentEnabled: this.isImageAlignmentEnabled,
+        isVideoAlignmentEnabled: this.isVideoAlignmentEnabled,
         getEditorState: this.getEditorState,
         onChange: this.onChange
       },
@@ -308,6 +310,8 @@ export default class WysiwygEditor extends Component {
   isReadOnly = () => this.props.readOnly;
 
   isImageAlignmentEnabled = () => this.state.toolbar.image.alignmentEnabled;
+
+  isVideoAlignmentEnabled = () => this.state.toolbar.video.alignmentEnabled;
 
   createEditorState = compositeDecorator => {
     let editorState;
@@ -507,7 +511,8 @@ export default class WysiwygEditor extends Component {
             {toolbar.options.map((opt, index) => {
               const Control = Controls[opt];
               const config = toolbar[opt];
-              if (opt === "image" && uploadCallback) {
+
+              if ((opt === "image" || opt === "video") && uploadCallback) {
                 config.uploadCallback = uploadCallback;
               }
               return <Control key={index} {...controlProps} config={config} />;

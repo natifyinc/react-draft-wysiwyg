@@ -22,7 +22,7 @@ class LayoutComponent extends Component {
     imgSrc: '',
     dragEnter: false,
     uploadHighlighted: this.props.config.uploadEnabled && !!this.props.config.uploadCallback,
-    showImageLoading: false,
+    showVideoLoading: false,
     height: this.props.config.defaultSize.height,
     width: this.props.config.defaultSize.width,
     alt: '',
@@ -34,7 +34,7 @@ class LayoutComponent extends Component {
         imgSrc: '',
         dragEnter: false,
         uploadHighlighted: this.props.config.uploadEnabled && !!this.props.config.uploadCallback,
-        showImageLoading: false,
+        showVideoLoading: false,
         height: this.props.config.defaultSize.height,
         width: this.props.config.defaultSize.width,
         alt: '',
@@ -54,7 +54,7 @@ class LayoutComponent extends Component {
     });
   };
 
-  onImageDrop: Function = (event: Object): void => {
+  onVideoDrop: Function = (event: Object): void => {
     event.preventDefault();
     event.stopPropagation();
     this.setState({
@@ -73,20 +73,20 @@ class LayoutComponent extends Component {
       dataIsItems = false;
     }
     for (let i = 0; i < data.length; i += 1) {
-      if ((!dataIsItems || data[i].kind === 'file') && data[i].type.match('^image/')) {
+      if ((!dataIsItems || data[i].kind === 'file') && data[i].type.match('^video/')) {
         const file = dataIsItems ? data[i].getAsFile() : data[i];
-        this.uploadImage(file);
+        this.uploadVideo(file);
       }
     }
   };
 
-  showImageUploadOption: Function = (): void => {
+  showVideoUploadOption: Function = (): void => {
     this.setState({
       uploadHighlighted: true,
     });
   };
 
-  addImageFromState: Function = (): void => {
+  addVideoFromState: Function = (): void => {
     const { imgSrc, alt } = this.state;
     let { height, width } = this.state;
     const { onChange } = this.props;
@@ -99,16 +99,16 @@ class LayoutComponent extends Component {
     onChange(imgSrc, height, width, alt);
   };
 
-  showImageURLOption: Function = (): void => {
+  showVideoURLOption: Function = (): void => {
     this.setState({
       uploadHighlighted: false,
     });
   };
 
-  toggleShowImageLoading: Function = (): void => {
-    const showImageLoading = !this.state.showImageLoading;
+  toggleShowVideoLoading: Function = (): void => {
+    const showVideoLoading = !this.state.showVideoLoading;
     this.setState({
-      showImageLoading,
+      showVideoLoading,
     });
   };
 
@@ -118,26 +118,26 @@ class LayoutComponent extends Component {
     });
   };
 
-  selectImage: Function = (event: Object): void => {
+  selectVideo: Function = (event: Object): void => {
     if (event.target.files && event.target.files.length > 0) {
-      this.uploadImage(event.target.files[0]);
+      this.uploadVideo(event.target.files[0]);
     }
   };
 
-  uploadImage: Function = (file: Object): void => {
-    this.toggleShowImageLoading();
+  uploadVideo: Function = (file: Object): void => {
+    this.toggleShowVideoLoading();
     const { uploadCallback } = this.props.config;
     uploadCallback(file)
       .then(({ data }) => {
         this.setState({
-          showImageLoading: false,
+          showVideoLoading: false,
           dragEnter: false,
           imgSrc: data.link || data.url,
         });
         this.fileUpload = false;
       }).catch(() => {
         this.setState({
-          showImageLoading: false,
+          showVideoLoading: false,
           dragEnter: false,
         });
       });
@@ -157,11 +157,11 @@ class LayoutComponent extends Component {
     }
   };
 
-  renderAddImageModal(): Object {
+  renderAddVideoModal(): Object {
     const {
       imgSrc,
       uploadHighlighted,
-      showImageLoading,
+      showVideoLoading,
       dragEnter,
       height,
       width,
@@ -173,7 +173,7 @@ class LayoutComponent extends Component {
         uploadCallback,
         uploadEnabled,
         urlEnabled,
-        previewImage,
+        previewVideo,
         inputAccept,
         alt: altConf,
       },
@@ -183,33 +183,33 @@ class LayoutComponent extends Component {
 
     return (
       <div
-        className={classNames('rdw-image-modal', popupClassName)}
+        className={classNames('rdw-video-modal', popupClassName)}
         onClick={this.stopPropagation}
       >
-        <div className="rdw-image-modal-header">
+        <div className="rdw-video-modal-header">
           {uploadEnabled && uploadCallback &&
             <span
-              onClick={this.showImageUploadOption}
-              className="rdw-image-modal-header-option"
+              onClick={this.showVideoUploadOption}
+              className="rdw-video-modal-header-option"
             >
-              {translations['components.controls.image.fileUpload']}
+              {translations['components.controls.video.fileUpload']}
               <span
                 className={classNames(
-                  'rdw-image-modal-header-label',
-                  { 'rdw-image-modal-header-label-highlighted': uploadHighlighted },
+                  'rdw-video-modal-header-label',
+                  { 'rdw-video-modal-header-label-highlighted': uploadHighlighted },
                 )}
               />
             </span>}
           { urlEnabled &&
             <span
-              onClick={this.showImageURLOption}
-              className="rdw-image-modal-header-option"
+              onClick={this.showVideoURLOption}
+              className="rdw-video-modal-header-option"
             >
-              {translations['components.controls.image.byURL']}
+              {translations['components.controls.video.byURL']}
               <span
                 className={classNames(
-                  'rdw-image-modal-header-label',
-                  { 'rdw-image-modal-header-label-highlighted': !uploadHighlighted },
+                  'rdw-video-modal-header-label',
+                  { 'rdw-video-modal-header-label-highlighted': !uploadHighlighted },
                 )}
               />
             </span>}
@@ -220,96 +220,97 @@ class LayoutComponent extends Component {
               <div
                 onDragEnter={this.onDragEnter}
                 onDragOver={this.stopPropagation}
-                onDrop={this.onImageDrop}
+                onDrop={this.onVideoDrop}
                 className={classNames(
-                  'rdw-image-modal-upload-option',
-                  { 'rdw-image-modal-upload-option-highlighted': dragEnter })}
+                  'rdw-video-modal-upload-option',
+                  { 'rdw-video-modal-upload-option-highlighted': dragEnter })}
               >
                 <label
                   htmlFor="file"
-                  className="rdw-image-modal-upload-option-label"
+                  className="rdw-video-modal-upload-option-label"
                 >
-                  { previewImage && imgSrc
-                    ? <img
+                  { previewVideo && imgSrc
+                    ? <video
+                      controls
                       src={imgSrc}
                       alt={imgSrc}
-                      className="rdw-image-modal-upload-option-image-preview"
-                    />
-                    : imgSrc || translations['components.controls.image.dropFileText']}
+                      className="rdw-video-modal-upload-option-video-preview"
+                    ></video>
+                    : imgSrc || translations['components.controls.video.dropFileText']}
                 </label>
               </div>
               <input
                 type="file"
                 id="file"
                 accept={inputAccept}
-                onChange={this.selectImage}
-                className="rdw-image-modal-upload-option-input"
+                onChange={this.selectVideo}
+                className="rdw-video-modal-upload-option-input"
               />
             </div> :
-            <div className="rdw-image-modal-url-section">
+            <div className="rdw-video-modal-url-section">
               <input
-                className="rdw-image-modal-url-input"
-                placeholder={translations['components.controls.image.enterlink']}
+                className="rdw-video-modal-url-input"
+                placeholder={translations['components.controls.video.enterlink']}
                 name="imgSrc"
                 onChange={this.updateValue}
                 onBlur={this.updateValue}
                 value={imgSrc}
               />
-              <span className="rdw-image-mandatory-sign">*</span>
+              <span className="rdw-video-mandatory-sign">*</span>
             </div>
         }
         {altConf.present &&
-        <div className="rdw-image-modal-size">
-          <span className="rdw-image-modal-alt-lbl">Alt Text</span>
+        <div className="rdw-video-modal-size">
+          <span className="rdw-video-modal-alt-lbl">Alt Text</span>
           <input
             onChange={this.updateValue}
             onBlur={this.updateValue}
             value={alt}
             name="alt"
-            className="rdw-image-modal-alt-input"
+            className="rdw-video-modal-alt-input"
             placeholder="alt"
           />
-          <span className="rdw-image-mandatory-sign">{altConf.mandatory && '*'}</span>
+          <span className="rdw-video-mandatory-sign">{altConf.mandatory && '*'}</span>
         </div>}
-        <div className="rdw-image-modal-size">
+        <div className="rdw-video-modal-size">
           &#8597;&nbsp;
           <input
             onChange={this.updateValue}
             onBlur={this.updateValue}
             value={height}
             name="height"
-            className="rdw-image-modal-size-input"
+            className="rdw-video-modal-size-input"
             placeholder="Height"
           />
-          <span className="rdw-image-mandatory-sign">*</span>
+          <span className="rdw-video-mandatory-sign">*</span>
           &nbsp;&#8596;&nbsp;
           <input
             onChange={this.updateValue}
             onBlur={this.updateValue}
             value={width}
             name="width"
-            className="rdw-image-modal-size-input"
+            className="rdw-video-modal-size-input"
             placeholder="Width"
           />
-          <span className="rdw-image-mandatory-sign">*</span>
+          <span className="rdw-video-mandatory-sign">*</span>
         </div>
-        <span className="rdw-image-modal-btn-section">
+        <span className="rdw-video-modal-btn-section">
           <button
-            className="rdw-image-modal-btn"
-            onClick={this.addImageFromState}
+            className="rdw-video-modal-btn"
+            onClick={this.addVideoFromState}
             disabled={!imgSrc || !height || !width || (altConf.mandatory && !alt)}
           >
             {translations['generic.add']}
           </button>
           <button
-            className="rdw-image-modal-btn"
+            className="rdw-video-modal-btn"
             onClick={doCollapse}
           >
             {translations['generic.cancel']}
           </button>
         </span>
-        {showImageLoading ?
-          <div className="rdw-image-modal-spinner">
+        {showVideoLoading ?
+          <div className="rdw-video-modal-spinner">
             <Spinner />
           </div> :
           undefined}
@@ -326,23 +327,23 @@ class LayoutComponent extends Component {
     } = this.props;
     return (
       <div
-        className="rdw-image-wrapper"
+        className="rdw-video-wrapper"
         aria-haspopup="true"
         aria-expanded={expanded}
-        aria-label="rdw-image-control"
+        aria-label="rdw-video-control"
       >
         <Option
           className={classNames(className)}
           value="unordered-list-item"
           onClick={onExpandEvent}
-          title={title || translations['components.controls.image.image']}
+          title={title || translations['components.controls.video.video']}
         >
           <img
             src={icon}
             alt=""
           />
         </Option>
-        {expanded ? this.renderAddImageModal() : undefined}
+        {expanded ? this.renderAddVideoModal() : undefined}
       </div>
     );
   }

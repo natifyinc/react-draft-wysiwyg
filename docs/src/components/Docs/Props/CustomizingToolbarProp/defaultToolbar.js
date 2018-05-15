@@ -1,5 +1,5 @@
 export default "{\n" +
-  "  options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'embedded', 'emoji', 'image', 'remove', 'history'],\n" +
+  "  options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'embedded', 'emoji', 'image', 'video', 'remove', 'history'],\n" +
   "  inline: {\n" +
   "    inDropdown: false,\n" +
   "    className: undefined,\n" +
@@ -118,6 +118,23 @@ export default "{\n" +
   "    uploadCallback: undefined,\n" +
   "    previewImage: false,\n" +
   "    inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',\n" +
+  "    alt: { present: false, mandatory: false },\n" +
+  "    defaultSize: {\n" +
+  "      height: 'auto',\n" +
+  "      width: 'auto',\n" +
+  "    },\n" +
+  "  },\n" +
+  "  video: {\n" +
+  "    icon: video,\n" +
+  "    className: undefined,\n" +
+  "    component: undefined,\n" +
+  "    popupClassName: undefined,\n" +
+  "    urlEnabled: true,\n" +
+  "    uploadEnabled: true,\n" +
+  "    alignmentEnabled: true,\n" +
+  "    uploadCallback: undefined,\n" +
+  "    previewVideo: false,\n" +
+  "    inputAccept: 'video/webm,video/mp4,video/ogg,\n" +
   "    alt: { present: false, mandatory: false },\n" +
   "    defaultSize: {\n" +
   "      height: 'auto',\n" +
