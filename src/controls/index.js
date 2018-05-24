@@ -6,6 +6,7 @@ import list from './List';
 import textAlign from './TextAlign';
 import colorPicker from './ColorPicker';
 import link from './Link';
+import ctaBox from './CTABox';
 import embedded from './Embedded';
 import emoji from './Emoji';
 import image from './Image';
@@ -22,6 +23,7 @@ module.exports = {
   textAlign,
   colorPicker,
   link,
+  ctaBox,
   embedded,
   emoji,
   image,

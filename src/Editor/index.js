@@ -29,6 +29,7 @@ import { hasProperty, filter } from "../utils/common";
 import { handlePastedText } from "../utils/handlePaste";
 import Controls from "../controls";
 import getLinkDecorator from "../decorators/Link";
+import getCTABoxDecorator from "../decorators/CTABox";
 import getMentionDecorators from "../decorators/Mention";
 import getHashtagDecorator from "../decorators/HashTag";
 import getBlockRenderFunc from "../renderer";
@@ -269,7 +270,10 @@ export default class WysiwygEditor extends Component {
       ...this.props.customDecorators,
       getLinkDecorator({
         showOpenOptionOnHover: this.state.toolbar.link.showOpenOptionOnHover
-      })
+      }),
+      getCTABoxDecorator({
+        showOpenOptionOnHover: this.state.toolbar.ctaBox.showOpenOptionOnHover,
+      }),
     ];
     if (this.props.mention) {
       decorators.push(

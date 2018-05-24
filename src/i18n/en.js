@@ -68,6 +68,15 @@ module.exports = {
   'components.controls.link.link': 'Link',
   'components.controls.link.unlink': 'Unlink',
 
+  // CTABox
+  'components.controls.ctaBox.headline': 'Insert a Call-to-Action Box',
+  'components.controls.ctaBox.boxTitle': 'CTA Title',
+  'components.controls.ctaBox.boxText': 'CTA Text',  
+  'components.controls.ctaBox.buttonText': 'Button Text',
+  'components.controls.ctaBox.ctaTargetLink': 'Link',
+  'components.controls.ctaBox.linkTargetOption': 'Open CTA Box in new window',
+  'components.controls.ctaBox.link': 'Insert a Call-to-Action Box',
+
   // List
   'components.controls.list.list': 'List',
   'components.controls.list.unordered': 'Unordered',
