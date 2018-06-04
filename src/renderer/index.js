@@ -1,5 +1,6 @@
 import Embedded from './Embedded';
 import getImageComponent from '../renderer/Image';
+import getCtaImageComponent from '../renderer/CtaImage';
 import getVideoComponent from '../renderer/Video';
 
 
@@ -16,10 +17,14 @@ const getBlockRenderFunc = (config, customBlockRenderer) => (block) => {
         component: getImageComponent(config),
         editable: false,
       };
-    
     } else if (entity && entity.type === 'VIDEO') {
       return {
         component: getVideoComponent(config),
+        editable: false,
+      };
+    } else if (entity && entity.type === 'CTA_IMAGE') {
+      return {
+        component: getCtaImageComponent(config),
         editable: false,
       };
     } else if (entity && entity.type === 'EMBEDDED_LINK') {

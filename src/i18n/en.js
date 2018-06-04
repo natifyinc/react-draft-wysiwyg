@@ -77,6 +77,13 @@ module.exports = {
   'components.controls.ctaBox.linkTargetOption': 'Open CTA Box in new window',
   'components.controls.ctaBox.link': 'Insert a Call-to-Action Box',
 
+  // CtaImage
+  'components.controls.ctaImage.headline': 'Insert a Call-to-Action Image',
+  'components.controls.ctaImage.fileUpload': 'File Upload',
+  'components.controls.ctaImage.byURL': 'URL',
+  'components.controls.ctaImage.dropFileText': 'Drop the file or click to upload',
+  'components.controls.ctaImage.link': 'Link',
+
   // List
   'components.controls.list.list': 'List',
   'components.controls.list.unordered': 'Unordered',

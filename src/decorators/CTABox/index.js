@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import openCTABox from '../../../images/openCTABox.svg';
+import openCTABox from '../../../images/openCtaBox.svg';
 import './styles.css';
 
 function findCTABoxEntities(contentBlock, callback, contentState) {
@@ -39,13 +39,6 @@ function getCTABoxComponent(config) {
       }
     };
 
-    toggleShowPopOver: Function = () => {
-      const showPopOver = !this.state.showPopOver;
-      this.setState({
-        showPopOver,
-      });
-    };
-
     render() {
       const { children, entityKey, contentState } = this.props;
       const { ctaTitle, ctaText, ctaButtonText, url, targetOption } = contentState.getEntity(entityKey).getData();
@@ -53,8 +46,6 @@ function getCTABoxComponent(config) {
       return (
         <div
           className="rdw-ctabox-decorator-wrapper"
-          // onMouseEnter={this.toggleShowPopOver}
-          // onMouseLeave={this.toggleShowPopOver}
         >
           <h3>{ctaTitle}</h3>
           <p>{ctaText}</p>

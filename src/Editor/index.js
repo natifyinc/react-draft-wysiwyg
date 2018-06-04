@@ -114,6 +114,7 @@ export default class WysiwygEditor extends Component {
         isReadOnly: this.isReadOnly,
         isImageAlignmentEnabled: this.isImageAlignmentEnabled,
         isVideoAlignmentEnabled: this.isVideoAlignmentEnabled,
+        isCtaImageAlignmentEnabled: this.isCtaImageAlignmentEnabled,
         getEditorState: this.getEditorState,
         onChange: this.onChange
       },
@@ -314,8 +315,8 @@ export default class WysiwygEditor extends Component {
   isReadOnly = () => this.props.readOnly;
 
   isImageAlignmentEnabled = () => this.state.toolbar.image.alignmentEnabled;
-
   isVideoAlignmentEnabled = () => this.state.toolbar.video.alignmentEnabled;
+  isCtaImageAlignmentEnabled = () => this.state.toolbar.ctaImage.alignmentEnabled;
 
   createEditorState = compositeDecorator => {
     let editorState;
@@ -515,8 +516,8 @@ export default class WysiwygEditor extends Component {
             {toolbar.options.map((opt, index) => {
               const Control = Controls[opt];
               const config = toolbar[opt];
-
-              if ((opt === "image" || opt === "video") && uploadCallback) {
+              
+              if (["image", "video", "ctaImage"].includes(opt) && uploadCallback) {
                 config.uploadCallback = uploadCallback;
               }
               return <Control key={index} {...controlProps} config={config} />;

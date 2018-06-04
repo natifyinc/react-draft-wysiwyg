@@ -16,6 +16,7 @@ import color from '../../images/color.svg';
 import eraser from '../../images/eraser.svg';
 import link from '../../images/link.svg';
 import ctaBox from '../../images/openCtaBox.svg';
+import ctaImage from '../../images/openCtaImage.svg';
 import unlink from '../../images/unlink.svg';
 import emoji from '../../images/emoji.svg';
 import embedded from '../../images/embedded.svg';
@@ -31,7 +32,7 @@ import superscript from '../../images/superscript.svg';
 * whatever user passes in toolbar property is deeply merged with this to over-ride defaults.
 */
 export default {
-  options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'ctaBox', 'embedded', 'emoji', 'image', 'video', 'remove', 'history'],
+  options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'ctaBox', 'ctaImage', 'embedded', 'emoji', 'image', 'video', 'remove', 'history'],
   inline: {
     inDropdown: false,
     className: undefined,
@@ -128,6 +129,24 @@ export default {
     defaultTargetOption: '_self',
     options: ['link'],
     link: { icon: ctaBox, className: undefined, title: undefined },
+  },
+  ctaImage: {
+    icon: ctaImage,
+    className: undefined,
+    component: undefined,
+    popupClassName: undefined,
+    urlEnabled: true,
+    uploadEnabled: true,
+    previewImage: false,
+    alignmentEnabled: true,
+    uploadCallback: undefined,
+    inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
+    alt: { present: false, mandatory: false },
+    defaultSize: {
+      height: 'auto',
+      width: 'auto',
+    },
+    title: undefined,
   },
   emoji: {
     icon: emoji,
