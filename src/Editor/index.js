@@ -29,6 +29,7 @@ import { hasProperty, filter } from "../utils/common";
 import { handlePastedText } from "../utils/handlePaste";
 import Controls from "../controls";
 import getLinkDecorator from "../decorators/Link";
+import getCTABoxDecorator from "../decorators/CTABox";
 import getMentionDecorators from "../decorators/Mention";
 import getHashtagDecorator from "../decorators/HashTag";
 import getBlockRenderFunc from "../renderer";
@@ -113,6 +114,7 @@ export default class WysiwygEditor extends Component {
         isReadOnly: this.isReadOnly,
         isImageAlignmentEnabled: this.isImageAlignmentEnabled,
         isVideoAlignmentEnabled: this.isVideoAlignmentEnabled,
+        isCtaImageAlignmentEnabled: this.isCtaImageAlignmentEnabled,
         getEditorState: this.getEditorState,
         onChange: this.onChange
       },
@@ -269,7 +271,10 @@ export default class WysiwygEditor extends Component {
       ...this.props.customDecorators,
       getLinkDecorator({
         showOpenOptionOnHover: this.state.toolbar.link.showOpenOptionOnHover
-      })
+      }),
+      getCTABoxDecorator({
+        showOpenOptionOnHover: this.state.toolbar.ctaBox.showOpenOptionOnHover,
+      }),
     ];
     if (this.props.mention) {
       decorators.push(
@@ -310,8 +315,8 @@ export default class WysiwygEditor extends Component {
   isReadOnly = () => this.props.readOnly;
 
   isImageAlignmentEnabled = () => this.state.toolbar.image.alignmentEnabled;
-
   isVideoAlignmentEnabled = () => this.state.toolbar.video.alignmentEnabled;
+  isCtaImageAlignmentEnabled = () => this.state.toolbar.ctaImage.alignmentEnabled;
 
   createEditorState = compositeDecorator => {
     let editorState;
@@ -511,8 +516,8 @@ export default class WysiwygEditor extends Component {
             {toolbar.options.map((opt, index) => {
               const Control = Controls[opt];
               const config = toolbar[opt];
-
-              if ((opt === "image" || opt === "video") && uploadCallback) {
+              
+              if (["image", "video", "ctaImage"].includes(opt) && uploadCallback) {
                 config.uploadCallback = uploadCallback;
               }
               return <Control key={index} {...controlProps} config={config} />;
