@@ -1154,9 +1154,9 @@
 }
 .rdw-ctabox-decorator-wrapper {
   position: relative;
-  width: 250px;
   background-color: white;
   padding: 1px 16px 16px 16px;
+  margin: 0 auto;
 }
 .rdw-ctabox-decorator-icon {
   position: absolute;
@@ -1206,6 +1206,9 @@
   background-repeat: repeat-x;
   border-radius: 0;
   box-shadow: 0 7px 5px -6px #999;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .rdw-ctabox-decorator-wrapper > a:hover {
   text-decoration: none;
@@ -1217,14 +1220,6 @@
 }
 .rdw-ctabox-decorator-wrapper > a:active {
   outline: none;
-}
-.rdw-ctabox-decorator-wrapper > a > span {
-  overflow: hidden;
-  display: -webkit-box;
-  line-clamp: 1;
-  box-orient: vertical;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
 }
 .rdw-mention-link {
   text-decoration: none;
