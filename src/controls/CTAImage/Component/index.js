@@ -258,6 +258,7 @@ class LayoutComponent extends Component {
                 onChange={this.updateValue}
                 onBlur={this.updateValue}
                 value={imgSrc}
+                placeholder="https://example.com/img.jpg"
               />
               <span className="rdw-ctaimage-mandatory-sign">*</span>
             </div>
