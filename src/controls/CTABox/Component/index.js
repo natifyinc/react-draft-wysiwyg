@@ -115,6 +115,7 @@ class LayoutComponent extends Component {
           onBlur={this.updateValue}
           name="boxTitle"
           value={boxTitle}
+          placeholder="Title"
         />
         <label className="rdw-ctabox-modal-label" htmlFor="boxText">
           {translations['components.controls.ctaBox.boxText']}
@@ -126,6 +127,7 @@ class LayoutComponent extends Component {
           onBlur={this.updateValue}
           name="boxText"
           value={boxText}
+          placeholder="Text"
         />
         <label className="rdw-ctabox-modal-label" htmlFor="buttonText">
           {translations['components.controls.ctaBox.buttonText']}
@@ -137,6 +139,7 @@ class LayoutComponent extends Component {
           onBlur={this.updateValue}
           name="buttonText"
           value={buttonText}
+          placeholder="Click me!"
         />
         <label className="rdw-ctabox-modal-label" htmlFor="ctaTargetLink">
           {translations['components.controls.ctaBox.ctaTargetLink']}
@@ -148,6 +151,7 @@ class LayoutComponent extends Component {
           onBlur={this.updateValue}
           name="ctaTargetLink"
           value={ctaTargetLink}
+          placeholder="https://example.com"
         />
         <span className="rdw-ctabox-modal-buttonsection">
           <button
